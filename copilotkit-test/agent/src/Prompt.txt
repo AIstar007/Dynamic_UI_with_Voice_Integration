@@ -1,0 +1,118 @@
+Rule 1: Validate Journey
+1. Path: data → bookingRetrievev3 → journeys
+2. Conditions: 
+2.1. Must be an array.
+2.2. Must be non-empty.
+3. Fail Reason: "Not Eligible: Journey data missing or empty".
+ 
+
+
+Rule 2: Validate Payment Status
+1. Paths: 
+1.1. data → bookingRetrievev3 → info → paidStatus
+1.2. data → bookingRetrievev3 → breakdown → balanceDue
+2. Conditions: 
+2.1. paidStatus = "PaidInFull"
+2.2. balanceDue = 0.0
+ 
+If both condition satisfied then move to next rule, if any of the condition failed or both failed then return fail reason.
+ 
+3. Fail Reason: "Not Eligible: Payment incomplete".
+ 
+ 
+ 
+Rule 3: Validate PNR Status
+1. Path: data → bookingRetrievev3 → info → status
+2. Conditions: 
+2.1. status = "Confirmed"
+3. Fail Reason: "Not Eligible: Booking must be confirmed".
+ 
+ 
+ 
+Rule 4: Validate Passenger Name Completeness
+1. Path: data → bookingRetrievev3 → passengers → name → first, last, title
+2. Conditions for each passenger: 
+2.1. first and last: 
+2.1.1. Length ≥ 1 and ≤ 32
+2.1.2. Must not be null
+2.2. title: 
+2.2.1. Length ≥ 1 and ≤ 6
+2.2.2. Must not be null
+3. Fail Reason: "Not Eligible: Passenger name incomplete or invalid (first/last/title must be present and within length limits)".
+ 
+ 
+ 
+Rule 5: Validate Unaccompanied Minor
+1. Path: data → bookingRetrievev3 → passengers → passengerTypeCode
+2. Conditions: 
+2.1. There must be at least one passenger with passengerTypeCode = "ADT".
+3. Fail Reason: "Not Eligible: Unaccompanied Minor is not allowed for web check-in. Please check in at the airport with one guardian mandatory. "
+ 
+ 
+ 
+ 
+Rule 6: Validate CodeShare Segment
+strictly follow the paths 
+1. Paths: 
+1.1. data → bookingRetrievev3 → journeys[*] → segments[*] → externalIdentifier 
+2. Conditions: 
+Iterate through all journeys and all segments. 
+The externalIdentifier must be null or empty for each segment. 
+ 
+If every segment in every journey satisfies these conditions, move to the next rule. 
+If any segment fails, return Fail Reason immediately.
+
+Additionally, if any carrierCode anywhere in the JSON is not "6E", return fail reason immediately.
+ 
+3. Fail Reason: "Not Eligible: Partnered Flights are not allowed for the Web-Check-In".
+ 
+ 
+ 
+Rule 7: Validate Queue Code
+1. Path: data → bookingRetrievev3 → queues
+2. Conditions: 
+2.1. queues must be empty.
+3. Fail Reason: "Not Eligible: Booking is in queue (queues must be empty)".
+ 
+ 
+
+
+Rule 8: Validate Seat Assignment
+1. Paths: 
+1.1. Path 1: data → bookingRetrievev3 → journeys[*] → segments[*] → passengerSegment[*] → seats -> unitKey
+1.2. Path 2: data → bookingRetrievev3 → passengers[*] → name → title, first, last
+2. Conditions: 
+2.1. For each journey, each segment, and each passengerSegment: 
+2.1.1. seats must not be null or not be empty.
+
+3. Validation Logic: 
+3.1. Iterate through all data → bookingRetrievev3 journeys → segments → passengerSegments.
+3.2. If seats is null or empty for any passengerSegment:
+3.3. Retrieve passengerKey from passengerSegment.
+3.4. Match passengerKey in data → bookingRetrievev3 → passengers.
+3.5. Return fail reason like passenger name as: "Not Eligible: Seat not assigned for passenger [title first last]".
+ 
+ 
+
+Rule 9: Validate Check-in Window
+1. currentTimeUTC: Get the currentTimeUTC when the agent is call.
+2. Departure Time Path:
+path1 :- data → bookingRetrievev3 → journeys → segments → legs → leginfo → departuretimeUtc.
+3. Determine Flight Type:
+3.1. Path2: data → bookingRetrievev3 → journeys → segments → international.
+3.2. Logic:
+3.2.1.Iterate through all journeys and segments.
+3.2.1.1. If any segment has international = true then Entire PNR is International.
+3.2.1.2. Else Entire PNR is Domestic.
+3.2.1.3. If any segment is International, the passenger is Not Eligible for check-in.
+
+ 
+4.	Conditions:
+4.1. Calculate the timeDifference = departuretimeUtc - currentTimeUTC 
+4.2. If timeDifference is not in negative then 
+4.2.1. Domestic flights: Check-in window = ( 48 hours ≥ timeDifference ≥ 1 hour ) .
+4.2.2. International flights: Check-in window = ( 24 hours ≥ timeDifference ≥ 75 minutes ) .
+5.	Fail Reason: 
+5.1. If timeDifference is in negative then return: "Flight is already take off."
+5.2. If the check-in window is closed, return: "Not Eligible: Check-in window closed".
+5.3. If any segment is International, return: "Not Eligible: International flights are not allowed for web check-in".

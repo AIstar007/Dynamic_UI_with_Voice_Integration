@@ -1,0 +1,312 @@
+/**
+ * IndiGo Premium Design System - CSS Custom Properties
+ * 
+ * This file exports all design tokens as CSS custom properties (CSS variables).
+ * Import this file in your main CSS/SCSS file to use tokens in CSS.
+ * 
+ * @example
+ * import './tokens/css-variables.css';
+ * 
+ * .my-button {
+ *   background-color: var(--color-background-primary);
+ *   color: var(--color-text-cta);
+ *   padding: var(--spacing-padding-md);
+ * }
+ */
+
+:root {
+  /* ============================================
+     Base Colors (Primitive Tokens)
+     ============================================ */
+  --color-base-black-wash: #0D0D0D;
+  --color-base-dark-grey: #25304B;
+  --color-base-yellow: #FFBD12;
+  --color-base-red: #E23B42;
+  --color-base-indigo: #000099;
+  --color-base-powder-blue: #AFE4FF;
+  --color-base-bright-blue: #00AEE5;
+  --color-base-green: #7FD287;
+  --color-base-light-grey: #7A85A0;
+  --color-base-gold: #A97D0E;
+  --color-base-gold-hover: #7F5E0B;
+  
+  /* CTA-specific color variables (matching Figma variable names) */
+  --color-cta-bg-cta-gold: #A97D0E;
+  --color-cta-bg-cta-hover: #7F5E0B;
+  --color-cta-bg-cta-disabled: #7A85A0;
+  --color-text-gold: #A97D0E;
+  --color-borders-cta-default: #A97D0E;
+  --color-borders-cta-hover: #7F5E0B;
+  --color-borders-disabled: #7A85A0;
+  --color-base-white-off: #EFEFEF;
+  --color-base-white: #FFFFFF;
+  --color-base-dark-grey-alt: #30343E;
+  --color-base-yellow-light: #FFD25D;
+  --color-base-dark-brown: #5C4407;
+  --color-base-cyan: #58C9F2;
+
+  /* ============================================
+     Background Colors (Semantic Tokens)
+     ============================================ */
+  --color-background-primary: var(--color-base-black-wash);
+  --color-background-secondary: var(--color-base-dark-grey);
+  --color-background-warning: var(--color-base-yellow);
+  --color-background-danger: var(--color-base-red);
+  --color-background-footer-blue: var(--color-base-indigo);
+  --color-background-white-off: var(--color-base-white-off);
+  --color-background-white: var(--color-base-white);
+
+  /* ============================================
+     Text Colors (Semantic Tokens)
+     ============================================ */
+  --color-text-primary: var(--color-base-white-off);
+  --color-text-highlight-title: var(--color-base-powder-blue);
+  --color-text-highlight-content: var(--color-base-bright-blue);
+  --color-text-success: var(--color-base-green);
+  --color-text-disabled: var(--color-base-light-grey);
+  --color-text-cta: var(--color-base-gold);
+  --color-text-cta-hover: var(--color-base-gold-hover);
+  --color-text-danger: var(--color-base-red);
+
+  /* ============================================
+     Icon Colors (Semantic Tokens)
+     ============================================ */
+  --color-icon-primary: var(--color-base-white-off);
+  --color-icon-success: var(--color-base-green);
+  --color-icon-disabled: var(--color-base-light-grey);
+  --color-icon-cta: var(--color-base-gold);
+  --color-icon-cta-hover: var(--color-base-gold-hover);
+
+  /* ============================================
+     Border Colors (Semantic Tokens)
+     ============================================ */
+  --color-border-primary: var(--color-base-white-off);
+  --color-border-divider: var(--color-base-dark-grey);
+  --color-border-disabled: var(--color-base-light-grey);
+  --color-border-highlight: var(--color-base-bright-blue);
+  --color-border-cta: var(--color-base-gold);
+  --color-border-cta-hover: var(--color-base-gold-hover);
+
+  /* ============================================
+     Gradients
+     ============================================ */
+  --gradient-silver: linear-gradient(180deg, var(--color-base-white-off) 0%, var(--color-base-dark-grey-alt) 100%);
+  --gradient-cta: linear-gradient(180deg, var(--color-base-yellow) 0%, var(--color-base-yellow-light) 50%, var(--color-base-dark-brown) 100%);
+  --gradient-cta-hover: linear-gradient(180deg, var(--color-base-cyan) 0%, var(--color-base-powder-blue) 50%, var(--color-base-bright-blue) 100%);
+
+  /* ============================================
+     Typography - Font Families
+     ============================================ */
+  --font-family-display: 'Bauhaus Std', sans-serif;
+  --font-family-body: 'Poppins', sans-serif;
+
+  /* ============================================
+     Typography - Font Weights
+     ============================================ */
+  --font-weight-regular: 400;
+  --font-weight-medium: 500;
+  --font-weight-semi-bold: 600;
+
+  /* ============================================
+     Typography - Web Styles
+     ============================================ */
+  /* Display */
+  --typography-web-display-large-font-family: var(--font-family-display);
+  --typography-web-display-large-font-size: 44px;
+  --typography-web-display-large-font-weight: var(--font-weight-medium);
+  --typography-web-display-large-letter-spacing: 0;
+  --typography-web-display-large-line-height: auto;
+
+  --typography-web-display-medium-font-family: var(--font-family-display);
+  --typography-web-display-medium-font-size: 40px;
+  --typography-web-display-medium-font-weight: var(--font-weight-medium);
+  --typography-web-display-medium-letter-spacing: 0;
+  --typography-web-display-medium-line-height: auto;
+
+  --typography-web-display-small-font-family: var(--font-family-display);
+  --typography-web-display-small-font-size: 36px;
+  --typography-web-display-small-font-weight: var(--font-weight-medium);
+  --typography-web-display-small-letter-spacing: 0;
+  --typography-web-display-small-line-height: auto;
+
+  --typography-web-display-x-small-font-family: var(--font-family-display);
+  --typography-web-display-x-small-font-size: 24px;
+  --typography-web-display-x-small-font-weight: var(--font-weight-medium);
+  --typography-web-display-x-small-letter-spacing: 0;
+  --typography-web-display-x-small-line-height: auto;
+
+  /* Heading */
+  --typography-web-heading-x-large-font-family: var(--font-family-body);
+  --typography-web-heading-x-large-font-size: 32px;
+  --typography-web-heading-x-large-font-weight: var(--font-weight-medium);
+  --typography-web-heading-x-large-letter-spacing: 0;
+  --typography-web-heading-x-large-line-height: auto;
+
+  --typography-web-heading-large-font-family: var(--font-family-body);
+  --typography-web-heading-large-font-size: 28px;
+  --typography-web-heading-large-font-weight: var(--font-weight-medium);
+  --typography-web-heading-large-letter-spacing: 0;
+  --typography-web-heading-large-line-height: auto;
+
+  --typography-web-heading-medium-font-family: var(--font-family-body);
+  --typography-web-heading-medium-font-size: 24px;
+  --typography-web-heading-medium-font-weight: var(--font-weight-medium);
+  --typography-web-heading-medium-letter-spacing: 0;
+  --typography-web-heading-medium-line-height: auto;
+
+  --typography-web-heading-small-font-family: var(--font-family-body);
+  --typography-web-heading-small-font-size: 20px;
+  --typography-web-heading-small-font-weight: var(--font-weight-medium);
+  --typography-web-heading-small-letter-spacing: 0;
+  --typography-web-heading-small-line-height: auto;
+
+  /* Body */
+  --typography-web-body-large-font-family: var(--font-family-body);
+  --typography-web-body-large-font-size: 16px;
+  --typography-web-body-large-font-weight: var(--font-weight-regular);
+  --typography-web-body-large-letter-spacing: 0;
+  --typography-web-body-large-line-height: auto;
+
+  --typography-web-body-medium-font-family: var(--font-family-body);
+  --typography-web-body-medium-font-size: 14px;
+  --typography-web-body-medium-font-weight: var(--font-weight-regular);
+  --typography-web-body-medium-letter-spacing: 0;
+  --typography-web-body-medium-line-height: auto;
+
+  /* Label */
+  --typography-web-label-large-font-family: var(--font-family-body);
+  --typography-web-label-large-font-size: 12px;
+  --typography-web-label-large-font-weight: var(--font-weight-regular);
+  --typography-web-label-large-letter-spacing: 0;
+  --typography-web-label-large-line-height: auto;
+
+  --typography-web-label-medium-font-family: var(--font-family-body);
+  --typography-web-label-medium-font-size: 10px;
+  --typography-web-label-medium-font-weight: var(--font-weight-regular);
+  --typography-web-label-medium-letter-spacing: 0;
+  --typography-web-label-medium-line-height: auto;
+
+  --typography-web-label-small-font-family: var(--font-family-body);
+  --typography-web-label-small-font-size: 8px;
+  --typography-web-label-small-font-weight: var(--font-weight-regular);
+  --typography-web-label-small-letter-spacing: 0;
+  --typography-web-label-small-line-height: auto;
+
+  /* ============================================
+     Spacing
+     ============================================ */
+  --spacing-0: 0;
+  --spacing-1: 4px;
+  --spacing-2: 8px;
+  --spacing-3: 12px;
+  --spacing-4: 16px;
+  --spacing-5: 20px;
+  --spacing-6: 24px;
+  --spacing-7: 28px;
+  --spacing-8: 32px;
+  --spacing-9: 36px;
+  --spacing-10: 40px;
+  --spacing-11: 44px;
+  --spacing-12: 48px;
+  --spacing-13: 52px;
+  --spacing-14: 56px;
+  --spacing-15: 60px;
+  --spacing-16: 64px;
+
+  /* Semantic Spacing */
+  --spacing-padding-xs: var(--spacing-1);
+  --spacing-padding-sm: var(--spacing-2);
+  --spacing-padding-md: var(--spacing-3);
+  --spacing-padding-base: var(--spacing-4);
+  --spacing-padding-lg: var(--spacing-6);
+  --spacing-padding-xl: var(--spacing-8);
+  --spacing-padding-2xl: var(--spacing-10);
+  --spacing-padding-3xl: var(--spacing-12);
+
+  --spacing-margin-xs: var(--spacing-1);
+  --spacing-margin-sm: var(--spacing-2);
+  --spacing-margin-md: var(--spacing-3);
+  --spacing-margin-base: var(--spacing-4);
+  --spacing-margin-lg: var(--spacing-6);
+  --spacing-margin-xl: var(--spacing-8);
+  --spacing-margin-2xl: var(--spacing-12);
+
+  --spacing-gap-xs: var(--spacing-1);
+  --spacing-gap-sm: var(--spacing-2);
+  --spacing-gap-md: var(--spacing-3);
+  --spacing-gap-base: var(--spacing-4);
+  --spacing-gap-lg: var(--spacing-6);
+  --spacing-gap-xl: var(--spacing-8);
+  --spacing-gap-2xl: var(--spacing-10);
+
+  /* Component Spacing */
+  --spacing-button-large: var(--spacing-14);
+  --spacing-button-medium: var(--spacing-10);
+  --spacing-button-small: var(--spacing-9);
+  --spacing-button-mini: var(--spacing-8);
+
+  --spacing-input-web-standard: var(--spacing-11);
+  --spacing-input-web-error: var(--spacing-16);
+  --spacing-input-mobile-standard: var(--spacing-10);
+  --spacing-input-mobile-error: var(--spacing-15);
+
+  --spacing-checkbox-web: var(--spacing-8);
+  --spacing-checkbox-mobile: var(--spacing-6);
+
+  --spacing-radio-web: var(--spacing-8);
+  --spacing-radio-mobile: var(--spacing-6);
+
+  --spacing-toggle-small: var(--spacing-9);
+  --spacing-toggle-medium: var(--spacing-11);
+  --spacing-toggle-large: var(--spacing-12);
+
+  /* ============================================
+     Border Radius
+     ============================================ */
+  --border-radius-none: 0;
+  --border-radius-xs: 2px;
+  --border-radius-sm: 4px;
+  --border-radius-md: 6px;
+  --border-radius-base: 8px;
+  --border-radius-lg: 12px;
+  --border-radius-xl: 16px;
+  --border-radius-2xl: 20px;
+  --border-radius-3xl: 24px;
+  --border-radius-4xl: 32px;
+  --border-radius-full: 50%;
+
+  /* Semantic Border Radius */
+  --border-radius-button-small: var(--border-radius-base);
+  --border-radius-button-medium: var(--border-radius-lg);
+  --border-radius-button-large: var(--border-radius-xl);
+  --border-radius-card: var(--border-radius-lg);
+  --border-radius-input-small: var(--border-radius-sm);
+  --border-radius-input-medium: var(--border-radius-base);
+  --border-radius-input-large: var(--border-radius-lg);
+  --border-radius-badge-small: var(--border-radius-xl);
+  --border-radius-badge-medium: var(--border-radius-2xl);
+  --border-radius-badge-large: var(--border-radius-3xl);
+  --border-radius-avatar: var(--border-radius-full);
+  --border-radius-checkbox: var(--border-radius-sm);
+  --border-radius-radio: var(--border-radius-full);
+  --border-radius-toggle: var(--border-radius-full);
+
+  /* ============================================
+     Shadows
+     ============================================ */
+  --shadow-none: none;
+  --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+  --shadow-base: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06);
+  --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+  --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+  --shadow-xl: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+  --shadow-2xl: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+
+  /* Semantic Shadows */
+  --shadow-card: var(--shadow-md);
+  --shadow-modal: var(--shadow-xl);
+  --shadow-dropdown: var(--shadow-md);
+  --shadow-tooltip: var(--shadow-sm);
+  --shadow-floating: var(--shadow-2xl);
+}
+

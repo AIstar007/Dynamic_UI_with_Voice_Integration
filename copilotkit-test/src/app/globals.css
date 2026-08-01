@@ -1,0 +1,995 @@
+@import "tailwindcss";
+@import "../tokens/css-variables.css";
+ 
+/**
+ * IndiGo Premium Design System - CSS Custom Properties
+ *
+ * This file exports all design tokens as CSS custom properties (CSS variables).
+ * Import this file in your main CSS/SCSS file to use tokens in CSS.
+ *
+ * @example
+ * import './tokens/css-variables.css';
+ *
+ * .my-button {
+ *   background-color: var(--color-background-primary);
+ *   color: var(--color-text-cta);
+ *   padding: var(--spacing-padding-md);
+ * }
+ */
+/* =====================================================
+   IndiGo Premium Design System – Core Components
+   ===================================================== */
+ 
+/* Base Reset & Global Styles */
+:root {
+  font-family: var(--font-family-body, 'Poppins', sans-serif);
+  font-size: 16px;
+  line-height: 1.5;
+  font-weight: 400;
+ 
+  color: var(--color-text-primary, #EFEFEF);
+  background-color: var(--color-background-primary, #0D0D0D);
+ 
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+ 
+body {
+  margin: 0;
+  min-width: 320px;
+  min-height: 100vh;
+}
+ 
+/* ============================================
+   Component Utilities
+   ============================================ */
+ 
+/* --- Icon --- */
+.indigo-icon {
+  display: inline-block;
+  flex-shrink: 0;
+  color: inherit;
+  fill: currentColor;
+  vertical-align: middle;
+}
+ 
+/* --- Button --- */
+.indigo-button {
+  /* Base styles */
+  font-family: var(--font-family-body, 'Poppins', sans-serif);
+  font-weight: var(--font-weight-semi-bold, 600);
+  letter-spacing: 0;
+  line-height: 100%;
+  border: none;
+  cursor: pointer;
+  transition: all 0.2s ease-in-out;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  text-decoration: none;
+  outline: none;
+  user-select: none;
+  white-space: nowrap;
+  gap: var(--spacing-2, 8px);
+}
+ 
+.indigo-button__icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  color: inherit;
+}
+ 
+.indigo-button__text {
+  display: inline-block;
+}
+ 
+/* Button Sizes */
+.indigo-button--large {
+  height: var(--spacing-button-large, 56px);
+  padding: var(--spacing-4, 16px) var(--spacing-9, 36px);
+  font-size: 12px;
+  border-radius: var(--border-radius-sm, 8px);
+}
+ 
+.indigo-button--large .indigo-button__icon {
+  font-size: 24px; /* Icon size wrapper */
+}
+ 
+.indigo-button--large .indigo-button__icon svg {
+  width: 24px;
+  height: 24px;
+}
+ 
+.indigo-button--medium {
+  height: var(--spacing-button-medium, 40px);
+  padding: var(--spacing-4, 16px) var(--spacing-9, 36px);
+  font-size: 12px;
+  border-radius: var(--border-radius-sm, 8px);
+}
+ 
+.indigo-button--medium .indigo-button__icon {
+  font-size: 20px;
+}
+ 
+.indigo-button--medium .indigo-button__icon svg {
+  width: 20px;
+  height: 20px;
+}
+ 
+.indigo-button--small {
+  height: var(--spacing-button-small, 36px);
+  padding: var(--spacing-4, 16px) var(--spacing-5, 20px);
+  font-size: 10px;
+  border-radius: var(--border-radius-sm, 8px);
+}
+ 
+.indigo-button--small .indigo-button__icon {
+  font-size: 16px;
+}
+ 
+.indigo-button--small .indigo-button__icon svg {
+  width: 16px;
+  height: 16px;
+}
+ 
+.indigo-button--mini {
+  height: var(--spacing-button-mini, 32px);
+  padding: var(--spacing-4, 16px) var(--spacing-3, 12px);
+  font-size: 10px;
+  border-radius: var(--border-radius-sm, 8px);
+}
+ 
+.indigo-button--mini .indigo-button__icon {
+  font-size: 14px;
+}
+ 
+.indigo-button--mini .indigo-button__icon svg {
+  width: 14px;
+  height: 14px;
+}
+ 
+/* Button Variants */
+.indigo-button--primary {
+  background: var(--color-base-gold, #A97D0E);
+  color: var(--color-text-primary, #EFEFEF);
+  border: none;
+}
+ 
+.indigo-button--primary:hover:not(.indigo-button--inactive) {
+  background: var(--color-base-gold-hover, #7F5E0B);
+}
+ 
+.indigo-button--primary.indigo-button--inactive,
+.indigo-button--primary:disabled {
+  background: var(--color-base-light-grey, #7A85A0);
+  color: var(--color-text-primary, #EFEFEF);
+  cursor: not-allowed;
+  opacity: 1;
+}
+ 
+.indigo-button--secondary {
+  background: transparent;
+  color: var(--color-text-primary, #EFEFEF);
+  border: 2px solid var(--color-base-gold, #A97D0E);
+}
+ 
+.indigo-button--secondary:hover:not(.indigo-button--inactive) {
+  background: transparent;
+  border-color: var(--color-base-gold-hover, #7F5E0B);
+  color: var(--color-base-gold-hover, #7F5E0B);
+}
+ 
+.indigo-button--secondary.indigo-button--inactive,
+.indigo-button--secondary:disabled {
+  background: transparent;
+  color: var(--color-base-light-grey, #7A85A0);
+  border-color: var(--color-base-light-grey, #7A85A0);
+  cursor: not-allowed;
+  opacity: 1;
+}
+ 
+.indigo-button--ghost {
+  background: transparent;
+  color: var(--color-base-gold, #A97D0E);
+  border: none;
+}
+ 
+.indigo-button--ghost:hover:not(.indigo-button--inactive) {
+  background: transparent;
+  color: var(--color-base-gold-hover, #7F5E0B);
+  border: 2px solid var(--color-base-gold-hover, #7F5E0B);
+}
+ 
+.indigo-button--ghost.indigo-button--inactive,
+.indigo-button--ghost:disabled {
+  background: transparent;
+  color: var(--color-base-light-grey, #7A85A0);
+  cursor: not-allowed;
+  opacity: 1;
+}
+ 
+/* Button Focus & Active */
+.indigo-button:focus-visible {
+  outline: 2px solid var(--color-border-highlight, #00AEE5);
+  outline-offset: 2px;
+}
+ 
+.indigo-button:active:not(.indigo-button--inactive):not(:disabled) {
+  transform: scale(0.98);
+}
+ 
+/* Button Full Width */
+.indigo-button--full-width {
+  width: 100%;
+}
+ 
+/* Button Loading State */
+.indigo-button__loader {
+  width: 16px;
+  height: 16px;
+  border: 2px solid currentColor;
+  border-top-color: transparent;
+  border-radius: 50%;
+  animation: indigo-button-spin 0.6s linear infinite;
+}
+ 
+@keyframes indigo-button-spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+ 
+ 
+/* --- Input --- */
+.indigo-input-container {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-1, 4px);
+  width: 100%;
+  min-width: 311px;
+  font-family: var(--font-family-body, 'Poppins', sans-serif);
+}
+ 
+/* Input Wrapper */
+.indigo-input-wrapper {
+  position: relative;
+  display: flex;
+  align-items: center;
+  width: 100%;
+  height: 44px; /* Standard Web */
+  border: 1px solid var(--color-border-primary, #EFEFEF);
+  border-radius: var(--border-radius-sm, 8px);
+  background-color: transparent;
+  transition: all 0.2s ease-in-out;
+  padding: 0 var(--spacing-3, 12px);
+  gap: var(--spacing-2, 8px);
+  box-sizing: border-box;
+}
+ 
+.indigo-input-wrapper--mobile {
+  height: 40px;
+}
+ 
+.indigo-input-wrapper--focused {
+  border-color: var(--color-base-powder-blue, #AFE4FF);
+}
+ 
+.indigo-input-wrapper--error {
+  border-color: var(--color-text-danger, #E23B42);
+}
+ 
+.indigo-input-wrapper--filled {
+  /* Filled state styling logic */
+}
+ 
+.indigo-input-wrapper--disabled {
+  background-color: var(--color-background-secondary, #25304B);
+  border-color: var(--color-border-disabled, #7A85A0);
+  cursor: not-allowed;
+}
+ 
+/* Input Label (Floating) */
+.indigo-input-label {
+  position: absolute;
+  left: 12px;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 12px;
+  color: var(--color-text-disabled, #7A85A0);
+  pointer-events: none;
+  transition: all 0.2s ease-in-out;
+  background-color: transparent;
+  padding: 0 4px;
+  z-index: 1;
+}
+ 
+/* Adjust label position when there's a left icon */
+.indigo-input-wrapper--has-left-icon .indigo-input-label {
+  left: 40px; /* 12px + 20px icon + 8px gap */
+}
+ 
+/* Adjust label position when there's a left selection */
+.indigo-input-wrapper--has-left-selection .indigo-input-label {
+  left: 80px; /* Approximate width for selection dropdown */
+}
+ 
+/* Floating State */
+.indigo-input-wrapper--focused .indigo-input-label,
+.indigo-input-wrapper--filled .indigo-input-label {
+  top: -1px;
+  transform: translateY(-50%);
+  font-size: 12px; /* Stays same size per Figma: Web/Label/L */
+  color: var(--color-text-primary, #EFEFEF);
+  background-color: var(--color-background-primary, #0D0D0D);
+}
+ 
+.indigo-input-wrapper--error .indigo-input-label {
+  color: var(--color-text-danger, #E23B42);
+}
+ 
+.indigo-input-wrapper--disabled .indigo-input-label {
+  color: var(--color-text-disabled, #7A85A0);
+  background-color: var(--color-background-primary, #0D0D0D);
+}
+ 
+/* Input Element */
+.indigo-input {
+  flex: 1;
+  width: 100%;
+  height: 100%;
+  background: transparent;
+  border: none;
+  outline: none;
+  color: #0D0D0D; /* Changed from #EFEFEF to pure white for better visibility */
+  font-family: inherit;
+  font-size: 12px;
+  padding: 0;
+  margin: 0;
+  opacity: 1; /* Ensure full opacity */
+}
+ 
+.indigo-input:disabled {
+  cursor: not-allowed;
+  color: var(--color-text-disabled, #7A85A0);
+}
+ 
+.indigo-input::placeholder {
+  color: transparent;
+}
+ 
+/* Input Icons */
+.indigo-input-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--color-text-primary, #EFEFEF);
+  flex-shrink: 0;
+}
+ 
+.indigo-input-wrapper--disabled .indigo-input-icon {
+  color: var(--color-text-disabled, #7A85A0);
+}
+ 
+/* Input Selection (Prefix/Suffix) */
+.indigo-input-selection {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-2, 8px);
+  height: 100%;
+}
+ 
+.indigo-input-selection--left {
+  border-right: 1px solid var(--color-border-primary, #EFEFEF);
+  padding-right: var(--spacing-3, 12px);
+  margin-right: 0;
+}
+ 
+.indigo-input-selection--right {
+  border-left: 1px solid var(--color-border-primary, #EFEFEF);
+  padding-left: var(--spacing-3, 12px);
+  margin-left: 0;
+}
+ 
+.indigo-input-wrapper--disabled .indigo-input-selection {
+  border-color: var(--color-border-disabled, #7A85A0);
+}
+ 
+/* Input Message */
+.indigo-input-message {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  font-size: 10px;
+  color: var(--color-text-disabled, #7A85A0);
+  min-height: 16px;
+}
+ 
+.indigo-input-message--error {
+  color: var(--color-text-danger, #E23B42);
+}
+ 
+.indigo-input-message-icon {
+  flex-shrink: 0;
+}
+ 
+/* Input Character Count */
+.indigo-input-character-count {
+  font-size: 10px;
+  color: var(--color-text-disabled, #7A85A0);
+  text-align: right;
+  margin-top: 4px;
+}
+ 
+/* Input Required Indicator */
+.indigo-input-label__required {
+  color: var(--color-text-danger, #E23B42);
+  margin-left: 2px;
+}
+ 
+/* Input Full Width Container */
+.indigo-input-container--full-width {
+  width: 100%;
+}
+ 
+ 
+/* --- Checkbox --- */
+.indigo-checkbox-wrapper {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--spacing-2, 8px);
+  cursor: pointer;
+  user-select: none;
+  font-family: var(--font-family-body, 'Poppins', sans-serif);
+  /* Enhanced styling for better visibility */
+  text-shadow: 0 0 1px rgba(0, 0, 0, 0.3);
+}
+ 
+.indigo-checkbox-wrapper--disabled {
+  cursor: not-allowed;
+  opacity: 0.8; /* Reduced from 0.6 to 0.8 for better visibility */
+}
+ 
+.indigo-checkbox__input {
+  position: absolute;
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+ 
+.indigo-checkbox {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  border: 1.5px solid var(--color-base-gold, #A97D0E); /* Gold border for unchecked */
+  border-radius: var(--border-radius-sm, 8px);
+  background-color: transparent;
+  transition: all 0.2s ease-in-out;
+}
+ 
+/* Checkbox Sizes - Visual element (centered in larger hit area) */
+.indigo-checkbox--web {
+  width: 24px;
+  height: 24px;
+  border-radius: 8px;
+}
+ 
+.indigo-checkbox--mobile {
+  width: 20px;
+  height: 20px;
+  border-radius: 6px;
+}
+ 
+/* Checkbox States */
+.indigo-checkbox--checked {
+  background-color: var(--color-base-gold, #A97D0E);
+  border-color: var(--color-base-gold, #A97D0E);
+}
+ 
+.indigo-checkbox-wrapper:hover:not(.indigo-checkbox-wrapper--disabled) .indigo-checkbox:not(.indigo-checkbox--disabled) {
+  border-color: var(--color-base-gold-hover, #7F5E0B);
+}
+ 
+.indigo-checkbox-wrapper:hover:not(.indigo-checkbox-wrapper--disabled) .indigo-checkbox--checked:not(.indigo-checkbox--disabled) {
+  background-color: var(--color-base-gold-hover, #7F5E0B);
+  border-color: var(--color-base-gold-hover, #7F5E0B);
+}
+ 
+.indigo-checkbox--disabled {
+  background-color: transparent;
+  border-color: var(--color-border-disabled, #7A85A0);
+  cursor: not-allowed;
+}
+ 
+.indigo-checkbox--disabled.indigo-checkbox--checked {
+  background-color: var(--color-border-disabled, #7A85A0);
+  border-color: var(--color-border-disabled, #7A85A0);
+}
+ 
+/* Checkbox Icon */
+.indigo-checkbox__icon {
+  width: 16px;
+  height: 16px;
+  color: var(--color-background-primary, #0D0D0D); /* Dark checkmark on Gold */
+}
+ 
+.indigo-checkbox--mobile .indigo-checkbox__icon {
+  width: 13px;
+  height: 13px;
+}
+ 
+/* Checkbox Label */
+.indigo-checkbox__label {
+  font-size: 14px;
+  color: #0D0D0D; /* Changed from #EFEFEF to pure white for better visibility */
+  font-weight: 500; /* Add font weight for better readability */
+  opacity: 1; /* Ensure full opacity */
+}
+ 
+.indigo-checkbox-wrapper--disabled .indigo-checkbox__label {
+  color: #A0A0A0; /* Changed from #7A85A0 to lighter grey for better visibility */
+}
+ 
+ 
+/* --- Radio Button --- */
+.indigo-radio-wrapper {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--spacing-2, 8px);
+  cursor: pointer;
+  user-select: none;
+  font-family: var(--font-family-body, 'Poppins', sans-serif);
+  /* Enhanced styling for better visibility */
+  text-shadow: 0 0 1px rgba(0, 0, 0, 0.3);
+ 
+  /* Prevent baseline-driven vertical shift when checked */
+  vertical-align: middle;
+}
+ 
+.indigo-radio-wrapper--disabled {
+  cursor: not-allowed;
+  opacity: 0.8; /* Reduced from 0.6 to 0.8 for better visibility */
+}
+ 
+.indigo-radio__input {
+  position: absolute;
+  opacity: 0.6;
+  width: 0;
+  height: 0;
+}
+ 
+/* Ensure borders don't change outer size */
+.indigo-radio,
+.indigo-radio__dot {
+  box-sizing: border-box;
+}
+ 
+.indigo-radio {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  border: 2px solid var(--color-base-gold, #A97D0E); /* Default unselected is Gold */
+  border-radius: 50%;
+  background-color: transparent;
+  transition: all 0.2s ease-in-out;
+}
+ 
+/* Radio Sizes - Visual size from Figma (Union shape) */
+.indigo-radio--web {
+  width: 23px;
+  height: 23px;
+}
+ 
+.indigo-radio--mobile {
+  width: 19px;
+  height: 19px;
+}
+ 
+/* Radio States */
+.indigo-radio--checked {
+  border-color: var(--color-base-gold, #A97D0E);
+}
+ 
+/* Hover state for unselected radio - powder blue */
+.indigo-radio-wrapper:hover:not(.indigo-radio-wrapper--disabled) .indigo-radio:not(.indigo-radio--disabled):not(.indigo-radio--checked) {
+  border-color: var(--color-base-powder-blue, #AFE4FF);
+}
+ 
+/* Hover state for selected radio - gold hover */
+.indigo-radio-wrapper:hover:not(.indigo-radio-wrapper--disabled) .indigo-radio--checked:not(.indigo-radio--disabled) {
+  border-color: var(--color-base-gold-hover, #7F5E0B);
+}
+ 
+.indigo-radio-wrapper:hover:not(.indigo-radio-wrapper--disabled) .indigo-radio--checked:not(.indigo-radio--disabled) .indigo-radio__dot {
+  background-color: var(--color-base-gold-hover, #7F5E0B);
+}
+ 
+.indigo-radio--disabled {
+  border-color: var(--color-border-disabled, #7A85A0);
+  cursor: not-allowed;
+}
+ 
+/* Radio Inner Dot - Exact pixel sizes for correct gap */
+.indigo-radio__dot {
+  border-radius: 50%;
+  background-color: var(--color-base-gold, #A97D0E);
+  transition: all 0.2s ease-in-out;
+}
+ 
+.indigo-radio--web .indigo-radio__dot {
+  width: 11px;
+  height: 11px;
+}
+ 
+.indigo-radio--mobile .indigo-radio__dot {
+  width: 9px;
+  height: 9px;
+}
+ 
+.indigo-radio--disabled .indigo-radio__dot {
+  background-color: var(--color-border-disabled, #7A85A0);
+}
+ 
+/* Radio Label */
+.indigo-radio__label {
+  font-size: 14px;
+  color: #0D0D0D; /* Changed from #EFEFEF to pure white for better visibility */
+  font-weight: 500; /* Add font weight for better readability */
+  opacity: 1; /* Ensure full opacity */
+  line-height: 1.25; /* Normalize to keep baseline consistent */
+}
+ 
+.indigo-radio-wrapper--disabled .indigo-radio__label {
+  color: #A0A0A0; /* Changed from #7A85A0 to lighter grey for better visibility */
+}
+ 
+ 
+/* --- Toggle --- */
+.indigo-toggle-wrapper {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--spacing-2, 8px);
+  cursor: pointer;
+  user-select: none;
+  font-family: var(--font-family-body, 'Poppins', sans-serif);
+}
+ 
+.indigo-toggle-wrapper--disabled {
+  cursor: not-allowed;
+  opacity: 0.8; /* Reduced from 0.6 to 0.8 for better visibility */
+}
+ 
+.indigo-toggle__input {
+  position: absolute;
+  opacity: 0.6;
+  width: 0;
+  height: 0;
+}
+ 
+.indigo-toggle {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  flex-shrink: 0;
+  transition: all 0.2s ease-in-out;
+}
+ 
+/* Toggle Sizes - Exact Figma dimensions */
+.indigo-toggle--small {
+  width: 28px;
+  height: 12px;
+}
+ 
+.indigo-toggle--medium {
+  width: 36px;
+  height: 16px;
+}
+ 
+.indigo-toggle--large {
+  width: 40px;
+  height: 20px;
+}
+ 
+/* Toggle Track */
+.indigo-toggle__track {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  border-radius: 999px;
+  background-color: var(--color-border-disabled, #7A85A0);
+  transition: all 0.2s ease-in-out;
+}
+ 
+.indigo-toggle--checked .indigo-toggle__track {
+  background-color: var(--color-base-gold, #A97D0E);
+}
+ 
+.indigo-toggle-wrapper:hover:not(.indigo-toggle-wrapper--disabled) .indigo-toggle--checked:not(.indigo-toggle--disabled) .indigo-toggle__track {
+  background-color: var(--color-base-gold-hover, #7F5E0B);
+}
+ 
+.indigo-toggle--disabled .indigo-toggle__track {
+  background-color: var(--color-border-disabled, #7A85A0);
+  opacity: 0.4;
+}
+ 
+/* Toggle Thumb - Oval shaped (wider than tall) */
+.indigo-toggle__thumb {
+  position: absolute;
+  background-color: var(--color-text-primary, #EFEFEF);
+  border-radius: 999px;
+  transition: all 0.2s ease-in-out;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
+}
+ 
+/* Toggle Thumb Sizes & Positions - Exact Figma dimensions with 2px padding */
+.indigo-toggle--small .indigo-toggle__thumb {
+  width: 12px;
+  height: 8px;
+  top: 2px;
+  left: 2px;
+}
+ 
+.indigo-toggle--small.indigo-toggle--checked .indigo-toggle__thumb {
+  transform: translateX(12px); /* 28px - 4px(pad) - 12px(thumb) = 12px */
+}
+ 
+.indigo-toggle--medium .indigo-toggle__thumb {
+  width: 16px;
+  height: 12px;
+  top: 2px;
+  left: 2px;
+}
+ 
+.indigo-toggle--medium.indigo-toggle--checked .indigo-toggle__thumb {
+  transform: translateX(16px); /* 36px - 4px(pad) - 16px(thumb) = 16px */
+}
+ 
+.indigo-toggle--large .indigo-toggle__thumb {
+  width: 20px;
+  height: 16px;
+  top: 2px;
+  left: 2px;
+}
+ 
+.indigo-toggle--large.indigo-toggle--checked .indigo-toggle__thumb {
+  transform: translateX(16px); /* 40px - 4px(pad) - 20px(thumb) = 16px */
+}
+ 
+/* Toggle Label */
+.indigo-toggle__label {
+  font-size: 14px;
+  color: var(--color-text-primary, #EFEFEF);
+}
+ 
+.indigo-toggle-wrapper--disabled .indigo-toggle__label {
+  color: var(--color-text-disabled, #7A85A0);
+}
+ 
+ 
+/* --- Avatar --- */
+.indigo-avatar {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  border-radius: 50%;
+  overflow: hidden;
+  position: relative;
+  font-family: var(--font-family-body, 'Poppins', sans-serif);
+  font-weight: var(--font-weight-regular, 400);
+  line-height: 1;
+  transition: all 0.2s ease-in-out;
+}
+ 
+/* Avatar Sizes */
+.indigo-avatar--xs {
+  width: 16px;
+  height: 16px;
+}
+ 
+.indigo-avatar--sm {
+  width: 24px;
+  height: 24px;
+}
+ 
+.indigo-avatar--md {
+  width: 32px;
+  height: 32px;
+}
+ 
+.indigo-avatar--lg {
+  width: 40px;
+  height: 40px;
+}
+ 
+.indigo-avatar--xl {
+  width: 48px;
+  height: 48px;
+}
+ 
+/* Avatar Types - Icon & Text have black background */
+.indigo-avatar--icon,
+.indigo-avatar--text {
+  background-color: var(--color-background-primary, #0D0D0D);
+}
+ 
+/* Avatar Icon */
+.indigo-avatar__icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--color-text-primary, #EFEFEF);
+}
+ 
+/* Icon sizes per avatar size */
+.indigo-avatar--xs .indigo-avatar__icon {
+  font-size: 8px;
+}
+ 
+.indigo-avatar--xs .indigo-avatar__icon svg {
+  width: 8px;
+  height: 8px;
+}
+ 
+.indigo-avatar--sm .indigo-avatar__icon {
+  font-size: 12px;
+}
+ 
+.indigo-avatar--sm .indigo-avatar__icon svg {
+  width: 12px;
+  height: 12px;
+}
+ 
+.indigo-avatar--md .indigo-avatar__icon {
+  font-size: 24px;
+}
+ 
+.indigo-avatar--md .indigo-avatar__icon svg {
+  width: 24px;
+  height: 24px;
+}
+ 
+.indigo-avatar--lg .indigo-avatar__icon {
+  font-size: 24px;
+}
+ 
+.indigo-avatar--lg .indigo-avatar__icon svg {
+  width: 24px;
+  height: 24px;
+}
+ 
+.indigo-avatar--xl .indigo-avatar__icon {
+  font-size: 28px;
+}
+ 
+.indigo-avatar--xl .indigo-avatar__icon svg {
+  width: 28px;
+  height: 28px;
+}
+ 
+/* Avatar Text */
+.indigo-avatar__text {
+  color: var(--color-text-primary, #EFEFEF);
+  text-align: center;
+  user-select: none;
+}
+ 
+/* Text sizes per avatar size */
+.indigo-avatar--xs .indigo-avatar__text {
+  font-size: 10px;
+}
+ 
+.indigo-avatar--sm .indigo-avatar__text {
+  font-size: 12px;
+}
+ 
+.indigo-avatar--md .indigo-avatar__text {
+  font-size: 10px;
+  text-transform: uppercase;
+}
+ 
+.indigo-avatar--lg .indigo-avatar__text {
+  font-size: 12px;
+  text-transform: uppercase;
+}
+ 
+.indigo-avatar--xl .indigo-avatar__text {
+  font-size: 12px;
+  text-transform: uppercase;
+}
+ 
+/* Avatar Image */
+.indigo-avatar__image {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  display: block;
+}
+ 
+/* Disabled State */
+.indigo-avatar--disabled .indigo-avatar__text {
+  color: var(--color-text-disabled, #7A85A0);
+}
+ 
+/* Disabled image - greyscale effect with luminosity blend */
+.indigo-avatar--disabled.indigo-avatar--image .indigo-avatar__image {
+  mix-blend-mode: luminosity;
+}
+ 
+/* Interactive Avatar (clickable) */
+.indigo-avatar--interactive {
+  cursor: pointer;
+  border: none;
+  padding: 0;
+  background: none;
+}
+ 
+.indigo-avatar--interactive:hover:not(.indigo-avatar--disabled) {
+  transform: scale(1.05);
+  box-shadow: 0 0 0 2px var(--color-border-highlight, #00AEE5);
+}
+ 
+.indigo-avatar--interactive:focus-visible {
+  outline: 2px solid var(--color-border-highlight, #00AEE5);
+  outline-offset: 2px;
+}
+ 
+.indigo-avatar--interactive:active:not(.indigo-avatar--disabled) {
+  transform: scale(0.95);
+}
+ 
+.indigo-avatar--interactive.indigo-avatar--disabled {
+  cursor: not-allowed;
+}
+
+
+/* =====================================================
+   CopilotKit – Mic Button Placement
+   ===================================================== */
+
+/* Make Copilot input row the positioning context */
+.copilot-chat-input {
+  position: relative;
+}
+
+/* Mic button inside input, left of send arrow */
+.copilot-mic-btn {
+  position: absolute;
+  right: 52px;       /* space before ↑ send button */
+  bottom: 12px;      /* vertically centered */
+  z-index: 10;
+
+  height: 36px;
+  width: 36px;
+  border-radius: 50%;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  background-color: #0d0d0d;
+  color: #ffffff;
+  cursor: pointer;
+}
+
+/* Listening state */
+.copilot-mic-btn.listening {
+  background-color: #e23b42; /* danger red */
+}
+
+ 
