@@ -8,7 +8,6 @@ import { type InputProps, CopilotSidebar } from '@copilotkit/react-ui';
 import { useState, useRef, useCallback, useEffect } from 'react';
 import { TextMessage, MessageRole } from "@copilotkit/runtime-client-gql";
 import { useSarvamVoice } from '@/hooks/useSarvamVoice';
-import { isModuleNamespaceObject } from 'util/types';
  
 function CustomInputWithVoice({ inProgress, onSend, isVisible }: InputProps) {
   const [inputValue, setInputValue] = useState('');
