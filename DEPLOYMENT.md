@@ -5,8 +5,11 @@ Two services: Next.js frontend on **Vercel**, Python AG-UI agent on **Render**.
 ## 1. Agent on Render
 
 1. Render dashboard → New → Blueprint → pick this repo. It reads [render.yaml](render.yaml) and creates the `dynamic-ui-agent` web service from `copilotkit-test/agent`.
-2. Set the secret env var in the Render dashboard:
-   - `OPENAI_API_KEY` (or switch to the Azure OpenAI variables commented in `render.yaml`).
+2. Set the secret env vars in the Render dashboard (Azure OpenAI):
+   - `AZURE_OPENAI_ENDPOINT` — e.g. `https://<resource>.openai.azure.com/`
+   - `AZURE_OPENAI_API_KEY` — Azure portal → your OpenAI resource → Keys and Endpoint
+   - `AZURE_OPENAI_CHAT_DEPLOYMENT_NAME` — your model deployment name (default `gpt-4o-mini`)
+   - (Plain OpenAI alternative: unset the Azure vars and set `OPENAI_API_KEY`.)
 3. Deploy, then note the service URL, e.g. `https://dynamic-ui-agent.onrender.com`.
 
 The agent binds to Render's injected `PORT` automatically (`AGENT_PORT`/`PORT` fallback in `copilotkit-test/agent/src/main.py`).
@@ -46,5 +49,7 @@ SARVAM_API_KEY=...
 `copilotkit-test/agent/.env`:
 
 ```
-OPENAI_API_KEY=...
+AZURE_OPENAI_ENDPOINT=https://<resource>.openai.azure.com/
+AZURE_OPENAI_API_KEY=...
+AZURE_OPENAI_CHAT_DEPLOYMENT_NAME=gpt-4o-mini
 ```
