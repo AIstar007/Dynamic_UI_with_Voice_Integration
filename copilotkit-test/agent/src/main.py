@@ -19,9 +19,18 @@ load_dotenv()
 def _build_chat_client() -> ChatClientProtocol:
     try:
         if bool(os.getenv("AZURE_OPENAI_ENDPOINT")):
-            # Azure OpenAI setup - uses environment variables by default
-            # Optionally can pass deployment_name explicitly
+            # Azure OpenAI setup. Prefers AZURE_OPENAI_API_KEY (works on any
+            # host, e.g. Render); falls back to DefaultAzureCredential for
+            # managed-identity environments.
             deployment_name = os.getenv("AZURE_OPENAI_CHAT_DEPLOYMENT_NAME", "gpt-4o-mini")
+            api_key = os.getenv("AZURE_OPENAI_API_KEY")
+            if api_key:
+                return AzureOpenAIChatClient(
+                    api_key=api_key,
+                    deployment_name=deployment_name,
+                    endpoint=os.getenv("AZURE_OPENAI_ENDPOINT"),
+                    api_version=os.getenv("AZURE_OPENAI_API_VERSION", "2024-10-21"),
+                )
             return AzureOpenAIChatClient(
                 credential=DefaultAzureCredential(),
                 deployment_name=deployment_name,

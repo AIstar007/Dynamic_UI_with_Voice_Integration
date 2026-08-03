@@ -12,13 +12,14 @@ services:
         value: "false"
       - key: PYTHON_VERSION
         value: "3.12.6"
-      # Set ONE of the following credential sets in the Render dashboard:
-      - key: OPENAI_API_KEY
+      # Azure OpenAI credentials (set secrets in the Render dashboard):
+      - key: AZURE_OPENAI_ENDPOINT
         sync: false
-      - key: OPENAI_CHAT_MODEL_ID
+      - key: AZURE_OPENAI_API_KEY
+        sync: false
+      - key: AZURE_OPENAI_CHAT_DEPLOYMENT_NAME
         value: gpt-4o-mini
-      # Or Azure OpenAI:
-      # - key: AZURE_OPENAI_ENDPOINT
-      #   sync: false
-      # - key: AZURE_OPENAI_CHAT_DEPLOYMENT_NAME
-      #   value: gpt-4o-mini
+      - key: AZURE_OPENAI_API_VERSION
+        value: "2024-10-21"
+      # Or plain OpenAI instead: unset the Azure vars and set OPENAI_API_KEY
+      # (+ optional OPENAI_CHAT_MODEL_ID).
