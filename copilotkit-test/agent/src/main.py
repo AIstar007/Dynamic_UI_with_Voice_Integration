@@ -64,5 +64,7 @@ add_agent_framework_fastapi_endpoint(
 
 if __name__ == "__main__":
     host = os.getenv("AGENT_HOST", "0.0.0.0")
-    port = int(os.getenv("AGENT_PORT", "8000"))
-    uvicorn.run("main:app", host=host, port=port, reload=True)
+    # Render (and most PaaS) inject PORT; AGENT_PORT wins for local overrides.
+    port = int(os.getenv("AGENT_PORT") or os.getenv("PORT") or "8000")
+    reload = os.getenv("AGENT_RELOAD", "true").lower() == "true"
+    uvicorn.run("main:app", host=host, port=port, reload=reload)
