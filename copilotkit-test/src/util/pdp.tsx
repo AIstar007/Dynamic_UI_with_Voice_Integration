@@ -21,6 +21,7 @@ export default function IndigoPassengerDetails() {
 		consentWhatsApp: false,
 		numberOfPassengers: 9,
 	});
+	const [confirmResult, setConfirmResult] = useState<boolean | null>(null);
 
 	const handlePassengerInputChange = (
 		e: React.ChangeEvent<HTMLInputElement>,
@@ -53,7 +54,7 @@ export default function IndigoPassengerDetails() {
 		name: 'submitForm',
 		description:
 			'Ask user to confirm before submitting the form. Only submit after all the required fields are filled.',
-		render: ({ args, status, respond, result }) => {
+		render: ({ args, status, respond }) => {
 			if (status === 'executing' && respond) {
 				return (
 					<div className="p-4 border rounded">
@@ -61,6 +62,7 @@ export default function IndigoPassengerDetails() {
 						<div className="flex gap-2 mt-4">
 							<button
 								onClick={(e) => {
+									setConfirmResult(true);
 									respond({ confirmed: true });
 									handleSubmit(e);
 								}}
@@ -69,7 +71,10 @@ export default function IndigoPassengerDetails() {
 								Submit
 							</button>
 							<button
-								onClick={() => respond({ confirmed: false })}
+								onClick={() => {
+									setConfirmResult(false);
+									respond({ confirmed: false });
+								}}
 								className="bg-gray-300 px-4 py-2 rounded"
 							>
 								Cancel
@@ -78,10 +83,10 @@ export default function IndigoPassengerDetails() {
 					</div>
 				);
 			}
-			if (status === 'complete' && result) {
+			if (status === 'complete' && confirmResult !== null) {
 				return (
 					<div className="p-2 text-sm text-gray-600">
-						{result.confirmed
+						{confirmResult
 							? 'Form submitted successfully'
 							: 'Submit cancelled'}
 					</div>
