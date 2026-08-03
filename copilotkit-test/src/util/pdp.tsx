@@ -87,7 +87,7 @@ export default function IndigoPassengerDetails() {
 					</div>
 				);
 			}
-			return null;
+			return <></>;
 		},
 	});
 
