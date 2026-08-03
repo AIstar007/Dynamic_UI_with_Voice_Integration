@@ -96,7 +96,7 @@ export default function IndigoPassengerDetails() {
 		},
 	});
 
-	const handleSubmit = (e) => {
+	const handleSubmit = (e: React.MouseEvent<HTMLButtonElement>) => {
 		e.preventDefault();
 		console.log('Form Data Submitted:', formData);
 	};
