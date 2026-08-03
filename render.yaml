@@ -1,0 +1,24 @@
+services:
+  # AG-UI Python agent (LLM) consumed by the Next.js frontend via AGENT_URL.
+  - type: web
+    name: dynamic-ui-agent
+    runtime: python
+    rootDir: copilotkit-test/agent
+    plan: free
+    buildCommand: pip install uv && uv sync --frozen
+    startCommand: uv run python src/main.py
+    envVars:
+      - key: AGENT_RELOAD
+        value: "false"
+      - key: PYTHON_VERSION
+        value: "3.12.6"
+      # Set ONE of the following credential sets in the Render dashboard:
+      - key: OPENAI_API_KEY
+        sync: false
+      - key: OPENAI_CHAT_MODEL_ID
+        value: gpt-4o-mini
+      # Or Azure OpenAI:
+      # - key: AZURE_OPENAI_ENDPOINT
+      #   sync: false
+      # - key: AZURE_OPENAI_CHAT_DEPLOYMENT_NAME
+      #   value: gpt-4o-mini

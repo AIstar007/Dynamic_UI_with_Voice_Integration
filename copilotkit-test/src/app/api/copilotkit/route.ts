@@ -14,9 +14,10 @@ const serviceAdapter = new ExperimentalEmptyAdapter();
 //    AG-UI integration to set up the connection.
 const runtime = new CopilotRuntime({
   agents: {
-    // Our FastAPI endpoint URL
-    "my_agent": new HttpAgent({url: "http://localhost:8000/"}),
-  }   
+    // FastAPI agent endpoint. Set AGENT_URL in production (e.g. the Render
+    // service URL); falls back to the local dev agent.
+    "my_agent": new HttpAgent({url: process.env.AGENT_URL || "http://localhost:8000/"}),
+  }
 });
  
 // 3. Build a Next.js API route that handles the CopilotKit runtime requests.
