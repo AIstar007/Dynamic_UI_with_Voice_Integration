@@ -13,15 +13,9 @@ export interface SpeechToTextResponse {
 }
 
 export class SarvamAIService {
-  private apiKey: string;
-  private baseUrl = 'https://api.sarvam.ai';
-
-  constructor() {
-    this.apiKey = process.env.NEXT_PUBLIC_SARVAM_API_KEY || '';
-    if (!this.apiKey) {
-      console.warn('Sarvam API key not found');
-    }
-  }
+  // Calls go through same-origin Next.js API routes (src/app/api/voice/*) so the
+  // Sarvam API key stays server-side. Set SARVAM_API_KEY in .env.local.
+  private baseUrl = '/api/voice';
 
   private getLanguageCode(lang: string): string {
     const languageCodes: Record<string, string> = {
@@ -52,11 +46,8 @@ export class SarvamAIService {
         formData.append('language', langCode);
       }
 
-      const response = await fetch(`${this.baseUrl}/speech-to-text`, {
+      const response = await fetch(`${this.baseUrl}/stt`, {
         method: 'POST',
-        headers: {
-          'api-subscription-key': this.apiKey,
-        },
         body: formData,
       });
 
@@ -125,7 +116,6 @@ export class SarvamAIService {
       const response = await fetch(`${this.baseUrl}/translate`, {
         method: 'POST',
         headers: {
-          'api-subscription-key': this.apiKey,
           'Content-Type': 'application/json',
         },
         body: JSON.stringify({
@@ -151,10 +141,9 @@ export class SarvamAIService {
 
   async textToSpeech(text: string, lang: string = 'en-IN', speaker: string = 'anushka'): Promise<Blob | null> {
     try {
-      const response = await fetch(`${this.baseUrl}/text-to-speech`, {
+      const response = await fetch(`${this.baseUrl}/tts`, {
         method: 'POST',
         headers: {
-          'api-subscription-key': this.apiKey,
           'Content-Type': 'application/json',
         },
         body: JSON.stringify({
